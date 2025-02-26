@@ -1,23 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import { AuthPrivateRouter, DashboardPrivateRoute } from "./Route/PrivateRoute";
+import AuthLayout from "./Layouts/AuthLayout";
+import Login from "./Screens/AuthScreen/Login";
+import DashboardLayout from "./Layouts/DashboardLayout";
+import Dashboard from "./Screens/MainScreen/Dashboard";
+import UserManagement from "./Screens/MainScreen/UserManagement";
+import History from "./Screens/MainScreen/History";
+import AllBookings from "./Screens/MainScreen/AllBookings";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      element: <AuthPrivateRouter />,
+      children: [
+        {
+          element: <AuthLayout />,
+          children: [
+            {
+              path: "/",
+              element: <Login />,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      element: <DashboardPrivateRoute />,
+      children: [
+        {
+          element: <DashboardLayout />,
+          children: [
+            {
+              path: "/dashboard",
+              element: <Dashboard />,
+            },
+            {
+              path: "/usermanagement",
+              element: <UserManagement />,
+            },
+            {
+              path: "/history",
+              element: <History />,
+            },
+            {
+              path: "/allbookings",
+              element: <AllBookings />,
+            },
+          ],
+        },
+      ],
+    },
+  ]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={router} />
     </div>
   );
 }

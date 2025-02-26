@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+  background-image: url("../Asserts/Png/headerbg.png");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-color: #eaeaeb;
+}
