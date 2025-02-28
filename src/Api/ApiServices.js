@@ -4,7 +4,7 @@ export const LoginServices = (data) => {
   return Axios.post("/login", data);
 };
 export const UserManagementServices = (data) => {
-  return Axios.post("/usermanagement", data);
+  return Axios.get("/usermanagement");
 };
 export const historyServices = (data) => {
   return Axios.post("/history", data);
